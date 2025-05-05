@@ -8,6 +8,7 @@
   "license": "MIT",
   "scripts": {
     "start": "concurrently npm:watch:*",
+    "dev": "npx tinacms dev -c \"hugo server -D\"",
     "watch:tw": "tailwindcss -i ./themes/vnovel/assets/css/main.css -o ./themes/vnovel/assets/css/style.css --watch",
     "watch:hugo": "hugo server",
     "build": "npx tinacms build && hugo --minify"
