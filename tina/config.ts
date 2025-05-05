@@ -5,7 +5,6 @@ const branch = "master";
 
 export default defineConfig({
   branch,
-
   // Get this from tina.io
   clientId: process.env.TINA_CLIENT_ID,
   // Get this from tina.io
@@ -79,8 +78,15 @@ export default defineConfig({
           filename: {
             readonly: true,
             slugify: (values) => {
-              return `${values?.title
-                ?.toLowerCase()
+              // Default to 'untitled-post' if title is undefined
+              if (!values || !values.title) {
+                return "untitled-post";
+              }
+
+              // Create filename in lowercase, replacing spaces with hyphens
+              // and removing any characters that aren't lowercase letters, numbers, or hyphens
+              return `${values.title
+                .toLowerCase()
                 .replace(/ /g, "-")
                 .replace(/[^a-z0-9-]/g, "")}`;
             },
